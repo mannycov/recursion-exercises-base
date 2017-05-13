@@ -9,10 +9,10 @@ const visitAllNodes = function(node, callback) {
 
 const flattenTreeToArray = function(node) {
   const arr = [];
-  visitAllNodes(node, function() {
-    arr.push(node)
+  visitAllNodes(node, function(node) {
+    arr.push(node);
   });
-  return arr;
+   return arr;
 };
 
 module.exports = {
