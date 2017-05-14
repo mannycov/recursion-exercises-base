@@ -33,8 +33,6 @@ const stringify = function(obj) {
   }
 };
 
-
-
 module.exports = {
   stringify: stringify
 };
