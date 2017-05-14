@@ -15,20 +15,25 @@ const stringify = function(obj) {
       if (_.isEmpty(obj)) {
         return '[]';
       }
-        const items = _.map(obj, item => (_.isString(item)) ? "\"" + item + "\"" : item);
+        const items = _.map(obj, item => (_.isString(item)) ? stringify(item) : stringify(item));
         return '[' + items + ']';
   } else if (_.isBoolean(obj)) {
     return obj.toString();
   } else if (_.isNull(obj)) {
     return 'null';  
   } else if (_.isObject(obj)) {
+    let items = '';
       if (_.isEmpty(obj)) {
         return '{}';
       }
-      const items = _.map(obj, (item) => (_.isString(item)) ? "\"" + item + "\"" : item);  
+      for (let key in obj) {
+        items = stringify(key) + ':' + stringify(obj[key]);
+      }
       return '{' + items + '}';
   }
 };
+
+
 
 module.exports = {
   stringify: stringify
