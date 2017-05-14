@@ -12,7 +12,18 @@ const getElementById = function(root, id) {
 
 const getElementsByClassName = function(root, className) {
   const flattenedTree = flattenTreeToArray(root);
-  return _.filter(flattenedTree, el => el.className === className);
+  let arr = [];
+  for (let i = 0; i < flattenedTree.length; i++) {
+    let name = flattenedTree[i].className;
+    if (name) {
+      if (name === className) {
+        arr.push(flattenedTree[i]);
+      } else if (name.indexOf(className) !== -1) {
+        arr.push(flattenedTree[i]);
+      } 
+    }
+  }
+  return arr;
 };
   
 const getElementsByTagName = function(root, tagName) {
